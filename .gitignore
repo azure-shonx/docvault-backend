@@ -13,3 +13,4 @@ obj/
 # End of https://www.toptal.com/developers/gitignore/api/dotnetcore
 
 build.bat
+test-data.txt

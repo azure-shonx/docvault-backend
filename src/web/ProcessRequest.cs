@@ -102,6 +102,7 @@ public class ProcessRequest
         }
         storageHandler.DeleteDocument(requestedFile.FileName);
         indexHandler.RemoveFile(requestedFile);
+        await functionHandler.PurgeCache(requestedFile.FileName);
         context.Response.StatusCode = (int)HttpStatusCode.OK;
     }
     public async Task UpdateTags(HttpContext context)
@@ -140,6 +141,7 @@ public class ProcessRequest
         FileReference fUpdate = new FileReference(request.NewName, requestedFile.Tags);
         storageHandler.RenameDocument(request.FileName, request.NewName);
         indexHandler.RenameFile(request.FileName, fUpdate);
+        await functionHandler.PurgeCache(request.FileName);
         context.Response.StatusCode = (int)HttpStatusCode.OK;
     }
 }

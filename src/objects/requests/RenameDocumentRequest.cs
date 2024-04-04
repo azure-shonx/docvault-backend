@@ -4,7 +4,7 @@ public class RenameDocumentRequest : Request
 {
     public string NewName { get; }
 
-    public RenameDocumentRequest(string OldName, string NewName) : base(OldName)
+    public RenameDocumentRequest(string FileName, string NewName) : base(FileName)
     {
         this.NewName = NewName;
     }

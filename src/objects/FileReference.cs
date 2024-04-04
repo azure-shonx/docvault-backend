@@ -5,6 +5,7 @@ public class FileReference
 
     public string FileName { get; }
     public List<Tag> Tags { get; private set; }
+	
     public FileReference(string FileName, List<Tag>? tags)
     {
         this.FileName = FileName;
@@ -13,7 +14,6 @@ public class FileReference
         else
             this.Tags = tags;
     }
-
 
     public FileReference(string FileName) : this(FileName, new List<Tag>(0)) { }
 
@@ -24,7 +24,6 @@ public class FileReference
         if (Tags != null)
             this.Tags = Tags;
     }
-
 
     public override string ToString()
     {

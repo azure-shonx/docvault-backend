@@ -2,7 +2,8 @@ public class Program
 {
 
   private static readonly string? FUNCTION_TOKEN = Environment.GetEnvironmentVariable("AZ_FUNCTION_TOKEN");
-  public static readonly string FUNCTION_URL = $"https://sas.docvault.shonx.net/api/GetSASURL?code={FUNCTION_TOKEN}";
+  public static readonly string FUNCTION_GET_URL = $"https://sas.docvault.shonx.net/api/GetSASURL?code={FUNCTION_TOKEN}";
+  public static readonly string FUNCTION_PURGE_URL = $"https://sas.docvault.shonx.net/api/PurgeSASURL?code={FUNCTION_TOKEN}";
 
   public static void Main(string[] args)
   {

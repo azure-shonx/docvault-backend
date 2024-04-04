@@ -15,10 +15,9 @@ public class AzureFunctionsHandler
 
         using (HttpResponseMessage response = await httpClient.SendAsync(request))
         {
-            var statusCode = response.StatusCode;
-            if ((int)statusCode != 200)
+            int statusCode = (int)response.StatusCode;
+            if (statusCode != 200)
             {
-                Console.WriteLine($"AzureFunctionsHandler got response {(int)statusCode}");
                 return null;
             }
             return await GetRequest(response.Content.ReadAsStream());
@@ -35,13 +34,12 @@ public class AzureFunctionsHandler
 
         using (HttpResponseMessage response = await httpClient.SendAsync(request))
         {
-            var statusCode = response.StatusCode;
-            if ((int)statusCode != 204) // Function sends 204, since we get no data back.
+            int statusCode = (int)response.StatusCode;
+            if (statusCode == 204 || statusCode == 404) // Function sends 204, since we get no data back. 404 because not all files have URLs.
             {
-                Console.WriteLine($"AzureFunctionsHandler got response {(int)statusCode}");
-                return false;
+                return true;
             }
-            return true;
+            return false;
         }
     }
 
@@ -52,7 +50,6 @@ public class AzureFunctionsHandler
         {
             return null;
         }
-        Console.WriteLine($"Response body was {json}");
         return JsonConvert.DeserializeObject<URLReply>(json);
     }
 }
